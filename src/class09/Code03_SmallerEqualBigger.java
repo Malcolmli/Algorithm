@@ -11,6 +11,8 @@ public class Code03_SmallerEqualBigger {
 		}
 	}
 
+	// 链表按照值进行左小中等右大分区
+	// 借用数组 快速排序算法
 	public static Node listPartition1(Node head, int pivot) {
 		if (head == null) {
 			return head;

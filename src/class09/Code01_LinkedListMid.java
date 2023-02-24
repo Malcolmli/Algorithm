@@ -13,6 +13,7 @@ public class Code01_LinkedListMid {
 		}
 	}
 
+	// 返回链表奇数中间 偶数中前一个
 	// head 头
 	public static Node midOrUpMidNode(Node head) {
 		if (head == null || head.next == null || head.next.next == null) {

@@ -13,6 +13,7 @@ public class Code02_IsPalindromeList {
 		}
 	}
 
+	// 判断是否回文 利用栈
 	// need n extra space
 	public static boolean isPalindrome1(Node head) {
 		Stack<Node> stack = new Stack<Node>();
