@@ -16,6 +16,9 @@ public class Code05_TreeMaxWidth {
 		}
 	}
 
+	// 利用队列按层遍历树 Map标记节点再哪一层
+	// 遍历时 先从队列取出节点 从map中获取层数
+	// 与当前层:相同累加 不同与Max比较交换 所在层+1 层宽重置为1
 	public static int maxWidthUseMap(Node head) {
 		if (head == null) {
 			return 0;

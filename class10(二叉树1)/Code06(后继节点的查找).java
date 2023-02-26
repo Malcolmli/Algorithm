@@ -13,6 +13,9 @@ public class Code06_SuccessorNode {
 		}
 	}
 
+	// 树的后继节点 中序遍历
+	// 存在右子节点 则后继节点为右子节点的左左。。子节点
+	// 不存在右子节点 找父节点 如是左子节点则输出 不是继续父节点 直到是左节点的父节点
 	public static Node getSuccessorNode(Node node) {
 		if (node == null) {
 			return node;

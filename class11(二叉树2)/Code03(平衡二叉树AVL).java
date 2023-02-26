@@ -2,6 +2,7 @@ package class12;
 
 public class Code03_IsBalanced {
 
+	//左子树和右子树的高度之差的绝对值小于等于1
 	public static class Node {
 		public int value;
 		public Node left;

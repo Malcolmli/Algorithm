@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Code02_IsBST {
 
+	//任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值
+	//任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值
 	public static class Node {
 		public int value;
 		public Node left;

@@ -37,7 +37,7 @@ public class Code03_EncodeNaryTreeToBinaryTree {
 
 	// 只提交这个类即可
 	class Codec {
-		// Encodes an n-ary tree to a binary tree.
+		// 多叉树转为二叉树
 		public TreeNode encode(Node root) {
 			if (root == null) {
 				return null;
@@ -63,7 +63,7 @@ public class Code03_EncodeNaryTreeToBinaryTree {
 			return head;
 		}
 
-		// Decodes your binary tree to an n-ary tree.
+		// 二叉树转为多叉树
 		public Node decode(TreeNode root) {
 			if (root == null) {
 				return null;
