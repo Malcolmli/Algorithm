@@ -2,6 +2,7 @@ package class12;
 
 public class Code04_IsFull {
 
+	// 除最后一层无任何子节点外，每一层上的所有结点都有两个子结点的二叉树
 	public static class Node {
 		public int value;
 		public Node left;
