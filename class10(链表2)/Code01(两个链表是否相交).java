@@ -11,10 +11,12 @@ public class Code01_FindFirstIntersectNode {
 		}
 	}
 
+	// 两个链表是否有相交点
 	public static Node getIntersectNode(Node head1, Node head2) {
 		if (head1 == null || head2 == null) {
 			return null;
 		}
+		// 找单链表是否有回环
 		Node loop1 = getLoopNode(head1);
 		Node loop2 = getLoopNode(head2);
 		if (loop1 == null && loop2 == null) {
@@ -58,6 +60,7 @@ public class Code01_FindFirstIntersectNode {
 		Node cur1 = head1;
 		Node cur2 = head2;
 		int n = 0;
+		// 先判断终点是否相等
 		while (cur1.next != null) {
 			n++;
 			cur1 = cur1.next;

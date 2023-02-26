@@ -17,6 +17,7 @@ public class Code04_CopyListWithRandom {
 		}
 	}
 
+	// 复制带随机指针的链表
 	public static Node copyRandomList1(Node head) {
 		// key 老节点
 		// value 新节点
