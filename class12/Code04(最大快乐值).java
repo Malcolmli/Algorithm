@@ -16,6 +16,8 @@ public class Code04_MaxHappy {
 
 	}
 
+	// 上级来了 下级都不来
+	// 求全部节点累加最大
 	public static int maxHappy1(Employee boss) {
 		if (boss == null) {
 			return 0;
@@ -50,7 +52,6 @@ public class Code04_MaxHappy {
 		Info allInfo = process(head);
 		return Math.max(allInfo.no, allInfo.yes);
 	}
-
 	public static class Info {
 		public int no;
 		public int yes;
@@ -60,7 +61,6 @@ public class Code04_MaxHappy {
 			yes = y;
 		}
 	}
-
 	public static Info process(Employee x) {
 		if (x == null) {
 			return new Info(0, 0);
@@ -75,6 +75,7 @@ public class Code04_MaxHappy {
 		}
 		return new Info(no, yes);
 	}
+
 
 	// for test
 	public static Employee genarateBoss(int maxLevel, int maxNexts, int maxHappy) {

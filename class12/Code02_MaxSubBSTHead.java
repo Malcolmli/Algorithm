@@ -14,6 +14,18 @@ public class Code02_MaxSubBSTHead {
 		}
 	}
 
+	public static Node maxSubBSTHead1(Node head) {
+		if (head == null) {
+			return null;
+		}
+		if (getBSTSize(head) != 0) {
+			return head;
+		}
+		Node leftAns = maxSubBSTHead1(head.left);
+		Node rightAns = maxSubBSTHead1(head.right);
+		return getBSTSize(leftAns) >= getBSTSize(rightAns) ? leftAns : rightAns;
+	}
+
 	public static int getBSTSize(Node head) {
 		if (head == null) {
 			return 0;
@@ -35,18 +47,6 @@ public class Code02_MaxSubBSTHead {
 		in(head.left, arr);
 		arr.add(head);
 		in(head.right, arr);
-	}
-
-	public static Node maxSubBSTHead1(Node head) {
-		if (head == null) {
-			return null;
-		}
-		if (getBSTSize(head) != 0) {
-			return head;
-		}
-		Node leftAns = maxSubBSTHead1(head.left);
-		Node rightAns = maxSubBSTHead1(head.right);
-		return getBSTSize(leftAns) >= getBSTSize(rightAns) ? leftAns : rightAns;
 	}
 
 	public static Node maxSubBSTHead2(Node head) {

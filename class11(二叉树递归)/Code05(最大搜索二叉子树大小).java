@@ -68,9 +68,11 @@ public class Code05_MaxSubBSTSize {
 		int p3 = -1;
 		boolean leftBST = leftInfo == null ? true : (leftInfo.maxBSTSubtreeSize == leftInfo.allSize);
 		boolean rightBST = rightInfo == null ? true : (rightInfo.maxBSTSubtreeSize == rightInfo.allSize);
+		// 当左右节点都是搜索二叉树 判断当前节点为根节点是否也是
 		if (leftBST && rightBST) {
 			boolean leftMaxLessX = leftInfo == null ? true : (leftInfo.max < x.val);
 			boolean rightMinMoreX = rightInfo == null ? true : (x.val < rightInfo.min);
+			// 当满足搜索二叉树 计算二叉树大小
 			if (leftMaxLessX && rightMinMoreX) {
 				int leftSize = leftInfo == null ? 0 : leftInfo.allSize;
 				int rightSize = rightInfo == null ? 0 : rightInfo.allSize;

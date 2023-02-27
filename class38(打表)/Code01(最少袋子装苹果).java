@@ -2,6 +2,8 @@ package class38;
 
 public class Code01_AppleMinBags {
 
+	// 6号和8号袋子装苹果
+	// 最少的袋子数量
 	public static int minBags(int apple) {
 		if (apple < 0) {
 			return -1;

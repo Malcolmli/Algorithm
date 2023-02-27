@@ -17,6 +17,32 @@ public class Code06_MaxDistance {
 	}
 
 	public static int maxDistance1(Node head) {
+		return process(head).maxDistance;
+	}
+	public static class Info {
+		public int maxDistance;
+		public int height;
+
+		public Info(int m, int h) {
+			maxDistance = m;
+			height = h;
+		}
+	}
+	public static Info process(Node x) {
+		if (x == null) {
+			return new Info(0, 0);
+		}
+		Info leftInfo = process(x.left);
+		Info rightInfo = process(x.right);
+		int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+		int p1 = leftInfo.maxDistance;
+		int p2 = rightInfo.maxDistance;
+		int p3 = leftInfo.height + rightInfo.height + 1;
+		int maxDistance = Math.max(Math.max(p1, p2), p3);
+		return new Info(maxDistance, height);
+	}
+
+	public static int maxDistance2(Node head) {
 		if (head == null) {
 			return 0;
 		}
@@ -30,13 +56,11 @@ public class Code06_MaxDistance {
 		}
 		return max;
 	}
-
 	public static ArrayList<Node> getPrelist(Node head) {
 		ArrayList<Node> arr = new ArrayList<>();
 		fillPrelist(head, arr);
 		return arr;
 	}
-
 	public static void fillPrelist(Node head, ArrayList<Node> arr) {
 		if (head == null) {
 			return;
@@ -52,7 +76,6 @@ public class Code06_MaxDistance {
 		fillParentMap(head, map);
 		return map;
 	}
-
 	public static void fillParentMap(Node head, HashMap<Node, Node> parentMap) {
 		if (head.left != null) {
 			parentMap.put(head.left, head);
@@ -63,7 +86,6 @@ public class Code06_MaxDistance {
 			fillParentMap(head.right, parentMap);
 		}
 	}
-
 	public static int distance(HashMap<Node, Node> parentMap, Node o1, Node o2) {
 		HashSet<Node> o1Set = new HashSet<>();
 		Node cur = o1;
@@ -90,34 +112,6 @@ public class Code06_MaxDistance {
 			distance2++;
 		}
 		return distance1 + distance2 - 1;
-	}
-
-	public static int maxDistance2(Node head) {
-		return process(head).maxDistance;
-	}
-
-	public static class Info {
-		public int maxDistance;
-		public int height;
-
-		public Info(int m, int h) {
-			maxDistance = m;
-			height = h;
-		}
-	}
-
-	public static Info process(Node x) {
-		if (x == null) {
-			return new Info(0, 0);
-		}
-		Info leftInfo = process(x.left);
-		Info rightInfo = process(x.right);
-		int height = Math.max(leftInfo.height, rightInfo.height) + 1;
-		int p1 = leftInfo.maxDistance;
-		int p2 = rightInfo.maxDistance;
-		int p3 = leftInfo.height + rightInfo.height + 1;
-		int maxDistance = Math.max(Math.max(p1, p2), p3);
-		return new Info(maxDistance, height);
 	}
 
 	// for test
