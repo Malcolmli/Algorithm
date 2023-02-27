@@ -19,12 +19,7 @@ public class Code03_MSumToN {
 	}
 
 	public static boolean isMSum2(int num) {
-//		
-//		return num == (num & (~num + 1));
-//		
-//		return num == (num & (-num));
-//		
-//		
+		// 与运算 2的幂次方 则(num & (num - 1))==0
 		return (num & (num - 1)) != 0;
 	}
 

@@ -3,17 +3,23 @@ package class40;
 public class Code07_ZigZagPrintMatrix {
 
 	public static void printMatrixZigZag(int[][] matrix) {
+		//上横
 		int tR = 0;
+		//上纵
 		int tC = 0;
+		//下横
 		int dR = 0;
+		//下纵
 		int dC = 0;
 		int endR = matrix.length - 1;
 		int endC = matrix[0].length - 1;
 		boolean fromUp = false;
 		while (tR != endR + 1) {
 			printLevel(matrix, tR, tC, dR, dC, fromUp);
+			//先向右 到头向下
 			tR = tC == endC ? tR + 1 : tR;
 			tC = tC == endC ? tC : tC + 1;
+			//先向下
 			dC = dR == endR ? dC + 1 : dC;
 			dR = dR == endR ? dR : dR + 1;
 			fromUp = !fromUp;
