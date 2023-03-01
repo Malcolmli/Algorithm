@@ -1,6 +1,8 @@
 package class16;
 
+//边的描述
 public class Edge {
+	//权重
 	public int weight;
 	public Node from;
 	public Node to;
