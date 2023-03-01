@@ -9,9 +9,11 @@ import java.util.Set;
 import java.util.Stack;
 
 //undirected graph only
+//无向图
 public class Code04_Kruskal {
 
 	// Union-Find Set
+	// 最小生成树
 	public static class UnionFind {
 		// key 某一个节点， value key节点往上的节点
 		private HashMap<Node, Node> fatherMap;

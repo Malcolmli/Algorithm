@@ -9,6 +9,7 @@ import java.util.Queue;
 public class Code03_TopologySort {
 
 	// directed graph and no loop
+	// 有向无环 依次寻找入度为0
 	public static List<Node> sortedTopology(Graph graph) {
 		// key 某个节点   value 剩余的入度
 		HashMap<Node, Integer> inMap = new HashMap<>();
