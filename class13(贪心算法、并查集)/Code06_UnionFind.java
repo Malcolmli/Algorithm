@@ -26,6 +26,17 @@ public class Code06_UnionFind {
 
 	public static int[] help = new int[MAXN];
 
+	//简单版并查集
+	public static int find(int i) {
+		if (father[index] != i) {
+			father[index] = find(father[index]);
+		}
+		return father[index];
+	}
+	public void union(int x, int y) {
+		father[find(x)] = find(y);
+	}
+
 	// 初始化并查集
 	public static void init(int n) {
 		for (int i = 0; i <= n; i++) {
