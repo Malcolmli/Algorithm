@@ -1,12 +1,14 @@
-package class17;
+package class16;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 
 // no negative weight
-public class Code01_Dijkstra {
+public class Code06_Dijkstra {
 
+	//遍历节点的全部邻居 找到最小距离
+	//与当前距离比较 最小替换谁
 	public static HashMap<Node, Integer> dijkstra1(Node from) {
 		HashMap<Node, Integer> distanceMap = new HashMap<>();
 		distanceMap.put(from, 0);
@@ -14,13 +16,13 @@ public class Code01_Dijkstra {
 		HashSet<Node> selectedNodes = new HashSet<>();
 		Node minNode = getMinDistanceAndUnselectedNode(distanceMap, selectedNodes);
 		while (minNode != null) {
-			// 原始点 -> minNode(跳转点) 最小距离distance
+			//  原始点  ->  minNode(跳转点)   最小距离distance
 			int distance = distanceMap.get(minNode);
 			for (Edge edge : minNode.edges) {
 				Node toNode = edge.to;
 				if (!distanceMap.containsKey(toNode)) {
 					distanceMap.put(toNode, distance + edge.weight);
-				} else { // toNode
+				} else { // toNode 
 					distanceMap.put(edge.to, Math.min(distanceMap.get(toNode), distance + edge.weight));
 				}
 			}
@@ -30,6 +32,7 @@ public class Code01_Dijkstra {
 		return distanceMap;
 	}
 
+	//找到剩余节点的最短距离
 	public static Node getMinDistanceAndUnselectedNode(HashMap<Node, Integer> distanceMap, HashSet<Node> touchedNodes) {
 		Node minNode = null;
 		int minDistance = Integer.MAX_VALUE;
@@ -55,13 +58,12 @@ public class Code01_Dijkstra {
 	}
 
 	public static class NodeHeap {
-		// 堆！
-		private Node[] nodes;
-		// node -> 堆上的什么位置？
-		
+		private Node[] nodes; // 实际的堆结构
+		// key 某一个node， value 上面堆中的位置
 		private HashMap<Node, Integer> heapIndexMap;
+		// key 某一个节点， value 从源节点出发到该节点的目前最小距离
 		private HashMap<Node, Integer> distanceMap;
-		private int size;
+		private int size; // 堆上有多少个点
 
 		public NodeHeap(int size) {
 			nodes = new Node[size];
@@ -77,22 +79,21 @@ public class Code01_Dijkstra {
 		// 有一个点叫node，现在发现了一个从源节点出发到达node的距离为distance
 		// 判断要不要更新，如果需要的话，就更新
 		public void addOrUpdateOrIgnore(Node node, int distance) {
-			if (inHeap(node)) { // update
+			if (inHeap(node)) {
 				distanceMap.put(node, Math.min(distanceMap.get(node), distance));
-				insertHeapify(node, heapIndexMap.get(node));
+				insertHeapify(heapIndexMap.get(node));
 			}
-			if (!isEntered(node)) { // add
+			if (!isEntered(node)) {
 				nodes[size] = node;
 				heapIndexMap.put(node, size);
 				distanceMap.put(node, distance);
-				insertHeapify(node, size++);
+				insertHeapify(size++);
 			}
-			// ignore
 		}
 
 		public NodeRecord pop() {
 			NodeRecord nodeRecord = new NodeRecord(nodes[0], distanceMap.get(nodes[0]));
-			swap(0, size - 1); // 0 > size - 1    size - 1 > 0
+			swap(0, size - 1);
 			heapIndexMap.put(nodes[size - 1], -1);
 			distanceMap.remove(nodes[size - 1]);
 			// free C++同学还要把原本堆顶节点析构，对java同学不必
@@ -101,7 +102,7 @@ public class Code01_Dijkstra {
 			return nodeRecord;
 		}
 
-		private void insertHeapify(Node node, int index) {
+		private void insertHeapify(int index) {
 			while (distanceMap.get(nodes[index]) < distanceMap.get(nodes[(index - 1) / 2])) {
 				swap(index, (index - 1) / 2);
 				index = (index - 1) / 2;
