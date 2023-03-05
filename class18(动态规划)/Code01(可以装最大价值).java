@@ -1,4 +1,7 @@
+package class19;
+
 public class Code01_Knapsack {
+
     // 所有的货，重量和价值，都在w和v数组里
     // 为了方便，其中没有负数
     // bag背包容量，不能超过这个载重
@@ -34,6 +37,7 @@ public class Code01_Knapsack {
             return 0;
         }
         int N = w.length;
+        //第几个放入 剩余空间
         int[][] dp = new int[N + 1][bag + 1];
         for (int index = N - 1; index >= 0; index--) {
             for (int rest = 0; rest <= bag; rest++) {
@@ -43,32 +47,11 @@ public class Code01_Knapsack {
                 if (next != -1) {
                     p2 = v[index] + next;
                 }
+                //选择价值高
                 dp[index][rest] = Math.max(p1, p2);
             }
         }
         return dp[0][bag];
-    }
-
-    public static int dp2(int[] w, int[] v, int bag) {
-        if (w == null || v == null || w.length != v.length || w.length == 0) {
-            return 0;
-        }
-        int N = w.length;
-        int[][] dp = new int[N + 1][bag + 1];
-        for (int index = 1; index < N; index++) {
-            for (int rest = bag; rest > 0; rest--) {
-                int p1 = dp[index - 1][rest];
-                int p2 = 0;
-                //当前价值+之前累加价值
-                int next = rest - w[index] < 0 ? -1 : dp[index - 1][rest - w[index]];
-                if (next != -1) {
-                    p2 = v[index] + next;
-                }
-                dp[index][rest] = Math.max(p1, p2);
-            }
-        }
-        // [0, 4, 6, 12, 16, 18, 22, 22, 23, 27, 31, 35, 37, 41, 41, 42]
-        return dp[N - 1][0];
     }
 
     public static void main(String[] args) {
@@ -77,6 +60,6 @@ public class Code01_Knapsack {
         int bag = 15;
         System.out.println(maxValue(weights, values, bag));
         System.out.println(dp(weights, values, bag));
-        System.out.println(dp2(weights, values, bag));
     }
+
 }
