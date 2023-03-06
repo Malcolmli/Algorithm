@@ -17,7 +17,9 @@ public class Code02_CardsInLine {
 		if (L == R) {
 			return arr[L];
 		}
+		//先手左
 		int p1 = arr[L] + g1(arr, L + 1, R);
+		//先手右
 		int p2 = arr[R] + g1(arr, L, R - 1);
 		return Math.max(p1, p2);
 	}
@@ -27,7 +29,9 @@ public class Code02_CardsInLine {
 		if (L == R) {
 			return 0;
 		}
+		//后手 对手取走左
 		int p1 = f1(arr, L + 1, R); // 对手拿走了L位置的数
+		//后手 对手取走右
 		int p2 = f1(arr, L, R - 1); // 对手拿走了R位置的数
 		return Math.min(p1, p2);
 	}
